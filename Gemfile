@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'devise'
 gem 'mysql2', '~> 0.3.13'
-
+gem 'pismo', '~> 0.7.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,0 +1,2 @@
+class WebScrape < ApplicationRecord
+end

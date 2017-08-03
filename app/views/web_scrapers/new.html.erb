@@ -1,0 +1,11 @@
+<h3>Enter mutlipe URLs with seprating ,</h3>
+<%= form_for @web_scrape, url: web_scrapers_path, html: {class: 'form-horizontal'} do |f| %>
+  <p>
+    <%= f.label :url %><br>
+    <%= f.text_field :url %>
+  </p>
+ 
+  <p>
+    <%= f.submit "Submit" %>
+  </p>
+<% end %>

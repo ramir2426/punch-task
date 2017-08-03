@@ -1,0 +1,20 @@
+<h1>Listing URLs with Information</h1>
+ 
+<table>
+  <tr>
+    <th>Url</th>
+    <th>Title</th>
+    <th>Favicon</th>
+  </tr>
+ 
+  <% @web_scrapes.each do |record| %>
+    <tr>
+      <td><%= record.url %></td>
+      <td><%= record.title %></td>
+      <td><%= record.avatar %></td>
+      <td><%= link_to 'Delete', web_scraper_path(record),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
