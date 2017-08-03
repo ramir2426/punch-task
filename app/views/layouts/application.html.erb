@@ -9,8 +9,36 @@
   </head>
 
   <body>
-  	<p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  	<% flash.each do |type, message| %>
+      <div class="flash">
+        <%= message %>
+      </div>        
+    <% end %> 
+    <header>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Punch Task App</a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+          <% if user_signed_in? %>
+            <ul class="nav navbar-nav">
+              <li class="active"><%= link_to "List",web_scrapers_path %></li>
+            </ul>
+            <ul class="nav navbar-nav">
+              <li class="active"><%= link_to "Add New",new_web_scraper_path %></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to 'Sign-Out', destroy_user_session_path,
+                    method: :delete %></li>
+            </ul> 
+          <% end %>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>  
+    </header>
     <%= yield %>
+    <footer class="site-footer">
+    </footer>
   </body>
 </html>

@@ -37,9 +37,10 @@ class WebScrapersController < ApplicationController
 		def get_infromation_from_url(url)
 			doc = Pismo::Document.new(url)
 			title = doc.title.present? ? doc.title : "Invalid URL"
-			favicon = doc.favicon.present? ? doc.favicon : "Invalid URL"
-			WebScrape.create(url: url, title: title, avatar: favicon )
-		end
-			
+			# favicon = doc.favicon.present? ? doc.favicon : "Invalid URL"
+			scrape = WebScrape.new(url: url, title: title)
+			scrape.remote_avatar_url = doc.favicon if doc.favicon.present?
+			scrape.save
 
+		end
 end

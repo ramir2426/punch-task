@@ -11,7 +11,7 @@
     <tr>
       <td><%= record.url %></td>
       <td><%= record.title %></td>
-      <td><%= record.avatar %></td>
+      <td><%= image_tag(record.avatar.url(:thumb),class: 'img-responsive') %></td>
       <td><%= link_to 'Delete', web_scraper_path(record),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
