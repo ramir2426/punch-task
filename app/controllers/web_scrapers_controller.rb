@@ -35,12 +35,20 @@ class WebScrapersController < ApplicationController
 		end
 
 		def get_infromation_from_url(url)
-			doc = Pismo::Document.new(url)
-			title = doc.title.present? ? doc.title : "Invalid URL"
-			# favicon = doc.favicon.present? ? doc.favicon : "Invalid URL"
-			scrape = WebScrape.new(url: url, title: title)
-			scrape.remote_avatar_url = doc.favicon if doc.favicon.present?
-			scrape.save
+			OpenURI.redirect_to_https = true 
+			begin
+				doc = Pismo::Document.new(url)
+				if doc.present?
+					title = doc.title.present? ? doc.title : "Invalid URL"
+					# favicon = doc.favicon.present? ? doc.favicon : "Invalid URL"
+					scrape = WebScrape.new(url: url, title: title)
+					scrape.remote_avatar_url = doc.favicon if doc.favicon.present?
+					scrape.save
+				end
+			rescue OpenURI::HTTPError => error
+				response = error.io
+				flash[:notice] = "#{response.status} for the #{url}"
+			end    
 
 		end
 end

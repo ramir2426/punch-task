@@ -11,7 +11,12 @@
     <tr>
       <td><%= record.url %></td>
       <td><%= record.title %></td>
-      <td><%= image_tag(record.avatar.url(:thumb),class: 'img-responsive') %></td>
+      <td>
+        <%if record.avatar.url.present? %>
+          <%= image_tag(record.avatar.url(:thumb),class: 'img-responsive') %></td>
+        <%else%>
+          <%= image_tag("default.jpg", :size => "50x50") %>
+        <% end %> 
       <td><%= link_to 'Delete', web_scraper_path(record),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
